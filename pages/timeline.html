@@ -6,7 +6,6 @@
   <title>Linha do Tempo 💖</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../assets/css/styles.css" />
@@ -26,7 +25,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
       margin-bottom: 25px;
     }
 
@@ -40,10 +38,13 @@
       background: rgba(255,255,255,0.18);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.25);
-      transition: transform .2s ease, background .2s ease;
-      white-space: nowrap;
+      transition: .2s ease;
     }
-    .btn-back:hover { transform: translateY(-2px); background: rgba(255,255,255,0.24); }
+
+    .btn-back:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.24);
+    }
 
     .card {
       background: rgba(255,255,255,0.15);
@@ -57,16 +58,15 @@
     .timeline {
       margin-top: 18px;
       display: grid;
-      gap: 14px;
-      position: relative;
+      gap: 18px;
     }
 
     .item {
-      padding: 18px;
+      padding: 20px;
       border-radius: 18px;
-      background: rgba(0,0,0,0.22);
+      background: rgba(0,0,0,0.25);
       border: 1px solid rgba(255,255,255,0.12);
-      transform: translateY(18px);
+      transform: translateY(20px);
       opacity: 0;
       transition: transform .8s ease, opacity .8s ease;
     }
@@ -78,17 +78,18 @@
 
     .date {
       font-weight: 700;
-      color: rgba(255,255,255,0.95);
-      margin-bottom: 6px;
-      letter-spacing: .3px;
+      margin-bottom: 8px;
     }
 
-    .text { opacity: .95; line-height: 1.8; }
+    .text {
+      line-height: 1.8;
+      opacity: .95;
+    }
 
     .tip {
-      margin-top: 14px;
-      opacity: .9;
+      margin-top: 18px;
       font-size: 14px;
+      opacity: .8;
     }
   </style>
 </head>
@@ -106,34 +107,48 @@
     </div>
 
     <section class="card">
-      <div class="timeline" id="timeline">
+      <div class="timeline">
+
         <div class="item">
-          <div class="date">07/04/2025 💘</div>
-          <div class="text">O dia que virou “antes e depois”. A partir daqui, eu comecei a ter certeza do meu lugar: ao seu lado.</div>
+          <div class="date">Quando tudo fez sentido 🌟</div>
+          <div class="text">Eu nem sabia que estava esperando você… até o dia que você chegou e tudo finalmente se encaixou.</div>
         </div>
 
         <div class="item">
-          <div class="date">Primeiras risadas ✨</div>
-          <div class="text">Aquele momento em que eu percebi que sua presença muda tudo… e que o mundo fica mais leve com você.</div>
+          <div class="date">Seu jeito único 💕</div>
+          <div class="text">Foi nos pequenos detalhes — seu olhar, sua voz, seu cuidado — que eu me apaixonei de verdade.</div>
         </div>
 
         <div class="item">
-          <div class="date">Dias simples, amor gigante 💖</div>
-          <div class="text">Mesmo sem nada “grandioso”, a gente fez os dias comuns virarem especiais. Isso é amor.</div>
+          <div class="date">Primeira saudade 🤍</div>
+          <div class="text">Foi aí que eu percebi: quando você não está perto, parece que falta um pedaço meu.</div>
         </div>
 
         <div class="item">
-          <div class="date">Planos e sonhos 🌙</div>
-          <div class="text">Do jeitinho da gente: devagar, com carinho, construindo futuro com paciência e verdade.</div>
+          <div class="date">Dias difíceis 🌧️</div>
+          <div class="text">Mesmo quando o mundo parecia pesado, a gente escolheu continuar. E isso me fez amar você ainda mais.</div>
         </div>
 
         <div class="item">
-          <div class="date">Hoje 💞</div>
-          <div class="text">Ainda escolho você. E eu vou continuar escolhendo, todo dia, do jeito mais bonito que eu souber.</div>
+          <div class="date">Aprendendo juntos 📖</div>
+          <div class="text">Errando, acertando, conversando… a gente foi construindo algo verdadeiro e raro.</div>
         </div>
+
+        <div class="item">
+          <div class="date">Silêncios confortáveis 🌙</div>
+          <div class="text">A melhor parte é que até no silêncio eu me sinto em paz com você.</div>
+        </div>
+
+        <div class="item">
+          <div class="date">Sempre você 💖</div>
+          <div class="text">Se eu pudesse escolher mil vezes, em todas elas ainda seria você.</div>
+        </div>
+
       </div>
 
-      <div class="tip">💡 Dica: você pode editar esses textos com momentos reais de vocês pra ficar ainda mais emocionante.</div>
+      <div class="tip">
+        💡 Dica: você pode editar esses textos com momentos reais de vocês pra ficar ainda mais emocionante.
+      </div>
     </section>
   </main>
 
@@ -141,12 +156,14 @@
     window.addEventListener("load", () => {
       document.body.style.opacity = "1";
 
-      const items = [...document.querySelectorAll(".item")];
+      const items = document.querySelectorAll(".item");
+
       const reveal = () => {
         const h = window.innerHeight;
         items.forEach(el => {
-          const top = el.getBoundingClientRect().top;
-          if (top < h - 110) el.classList.add("visible");
+          if (el.getBoundingClientRect().top < h - 100) {
+            el.classList.add("visible");
+          }
         });
       };
 
