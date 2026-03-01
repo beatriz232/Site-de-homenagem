@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memórias 💌</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+
+  <style>
+    body { opacity: 0; transition: opacity .8s ease; }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    .title { font-size: 28px; font-weight: 700; }
+
+    .btn-back {
+      text-decoration: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: transform .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn-back:hover { transform: translateY(-2px); background: rgba(255,255,255,0.24); }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 60px rgba(233, 30, 99, 0.25);
+    }
+
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .note {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform .2s ease;
+    }
+    .note:hover { transform: translateY(-2px); }
+
+    .note h3 { font-size: 16px; margin-bottom: 8px; font-weight: 700; }
+    .note p { opacity: .95; line-height: 1.85; }
+
+    .cta {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .btn {
+      margin-top: 12px;
+      border: none;
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #ff4d6d, #e91e63);
+      box-shadow: 0 12px 30px rgba(233,30,99,.35);
+      transition: transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .hidden {
+      display: none;
+      margin-top: 12px;
+      opacity: .95;
+      line-height: 1.85;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="heartsCanvas"></canvas>
+
+  <main class="page">
+    <div class="topbar">
+      <div>
+        <div class="title">Memórias 💌</div>
+        <div style="opacity:.9">Pequenas cartas que eu guardo em você ✨</div>
+      </div>
+      <a class="btn-back" href="../amor.html">⬅ Voltar</a>
+    </div>
+
+    <section class="card">
+      <div class="grid">
+        <article class="note">
+          <h3>🌙 Quando eu penso em você…</h3>
+          <p>Eu sinto uma paz diferente. Como se o mundo desacelerasse só pra eu respirar melhor.</p>
+        </article>
+
+        <article class="note">
+          <h3>💖 Meu lugar favorito</h3>
+          <p>É ao seu lado. Não importa onde… se você tá comigo, eu tô em casa.</p>
+        </article>
+
+        <article class="note">
+          <h3>✨ O que eu mais amo</h3>
+          <p>O jeito que você existe. Seu carinho, sua força e sua doçura. Você é rara.</p>
+        </article>
+
+        <article class="note">
+          <h3>💞 Promessa</h3>
+          <p>Eu vou continuar escolhendo você. Nos dias bons… e nos dias difíceis também.</p>
+        </article>
+      </div>
+
+      <div class="cta">
+        <strong>💌 Mensagem secreta</strong>
+        <div style="opacity:.9; margin-top:6px;">Clica aqui pra abrir uma cartinha que é só sua.</div>
+        <button class="btn" id="openBtn">Abrir 💗</button>
+        <div class="hidden" id="secret">
+          Você é a minha melhor parte. Obrigada por existir na minha vida.
+          Eu te amo mais do que consigo colocar em palavras — então eu coloco em código. 💖
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener("load", () => document.body.style.opacity = "1");
+
+    const btn = document.getElementById("openBtn");
+    const secret = document.getElementById("secret");
+    btn.addEventListener("click", () => {
+      secret.style.display = secret.style.display === "block" ? "none" : "block";
+      btn.textContent = secret.style.display === "block" ? "Fechar 💌" : "Abrir 💗";
+    });
+  </script>
+
+  <script src="../assets/js/hearts.js"></script>
+</body>
+</html>

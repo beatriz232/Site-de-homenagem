@@ -1,0 +1,299 @@
+/* ========================= */
+/* RESET E CONFIGURAÇÕES GERAIS */
+/* ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #fff0f6, #f8bbd0, #e91e63, #ff4d6d);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  overflow-x: hidden;
+  color: white;
+}
+
+/* Fundo animado */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Canvas dos corações */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* ========================= */
+/* BOTÃO INICIAL */
+/* ========================= */
+
+.home-page .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.btn-start {
+  padding: 22px 50px;
+  font-size: 1.6em;
+  background: linear-gradient(135deg, #ffffff, #ffe6f0);
+  color: #e91e63;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+}
+
+.btn-start:hover {
+  transform: scale(1.08);
+  box-shadow: 0 20px 50px rgba(233, 30, 99, 0.6);
+}
+
+/* ========================= */
+/* CONTAINER PRINCIPAL */
+/* ========================= */
+
+.memory-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================= */
+/* CONTADOR */
+/* ========================= */
+
+.countdown-container {
+  text-align: center;
+  margin: 50px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(233, 30, 99, 0.3);
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+#countdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#countdown span:first-child {
+  font-size: 2.8em;
+  font-weight: bold;
+}
+
+#countdown span:last-child {
+  font-size: 1em;
+  opacity: 0.8;
+}
+
+/* ========================= */
+/* VÍDEO */
+/* ========================= */
+
+.video-container {
+  margin: 60px 0;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(233, 30, 99, 0.4);
+}
+
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================= */
+/* SLIDESHOW */
+/* ========================= */
+
+.slideshow-container {
+  margin: 60px 0;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(233, 30, 99, 0.4);
+  transition: transform 0.5s ease;
+}
+
+.slideshow-container:hover {
+  transform: scale(1.02);
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow img.active {
+  opacity: 1;
+}
+
+/* ========================= */
+/* TEXTO ROMÂNTICO */
+/* ========================= */
+
+.text-container {
+  margin: 60px 0;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  font-size: 1.2em;
+  line-height: 1.9;
+  box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
+}
+
+/* ========================= */
+/* PLAYER DE MÚSICA */
+/* ========================= */
+
+.audio-container {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+.music-player {
+  width: 320px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 25px;
+  box-shadow: 0 20px 40px rgba(233, 30, 99, 0.4);
+  border: 1px solid rgba(255, 64, 129, 0.4);
+  transition: transform 0.4s ease;
+}
+
+.music-player:hover {
+  transform: translateY(-5px);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ff4081, #ff79b0);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+}
+
+.play-btn:hover {
+  transform: scale(1.08);
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.song-title {
+  color: #ff79b0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.song-artist {
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+/* Barra de progresso */
+
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #ff4081, #ff79b0);
+  border-radius: 3px;
+  width: 0%;
+}
+
+/* Volume */
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.volume-slider {
+  flex-grow: 1;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+}
+
+/* ========================= */
+/* ANIMAÇÃO DE ENTRADA SUAVE */
+/* ========================= */
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

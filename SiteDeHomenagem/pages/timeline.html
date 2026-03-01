@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linha do Tempo 💖</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+
+  <style>
+    body { opacity: 0; transition: opacity .8s ease; }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .title { font-size: 28px; font-weight: 700; }
+
+    .btn-back {
+      text-decoration: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: transform .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn-back:hover { transform: translateY(-2px); background: rgba(255,255,255,0.24); }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 60px rgba(233, 30, 99, 0.25);
+    }
+
+    .timeline {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+      position: relative;
+    }
+
+    .item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      transform: translateY(18px);
+      opacity: 0;
+      transition: transform .8s ease, opacity .8s ease;
+    }
+
+    .item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .date {
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 6px;
+      letter-spacing: .3px;
+    }
+
+    .text { opacity: .95; line-height: 1.8; }
+
+    .tip {
+      margin-top: 14px;
+      opacity: .9;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="heartsCanvas"></canvas>
+
+  <main class="page">
+    <div class="topbar">
+      <div>
+        <div class="title">Linha do Tempo 💖</div>
+        <div style="opacity:.9">Os capítulos mais especiais da nossa história ✨</div>
+      </div>
+      <a class="btn-back" href="../amor.html">⬅ Voltar</a>
+    </div>
+
+    <section class="card">
+      <div class="timeline" id="timeline">
+        <div class="item">
+          <div class="date">07/04/2025 💘</div>
+          <div class="text">O dia que virou “antes e depois”. A partir daqui, eu comecei a ter certeza do meu lugar: ao seu lado.</div>
+        </div>
+
+        <div class="item">
+          <div class="date">Primeiras risadas ✨</div>
+          <div class="text">Aquele momento em que eu percebi que sua presença muda tudo… e que o mundo fica mais leve com você.</div>
+        </div>
+
+        <div class="item">
+          <div class="date">Dias simples, amor gigante 💖</div>
+          <div class="text">Mesmo sem nada “grandioso”, a gente fez os dias comuns virarem especiais. Isso é amor.</div>
+        </div>
+
+        <div class="item">
+          <div class="date">Planos e sonhos 🌙</div>
+          <div class="text">Do jeitinho da gente: devagar, com carinho, construindo futuro com paciência e verdade.</div>
+        </div>
+
+        <div class="item">
+          <div class="date">Hoje 💞</div>
+          <div class="text">Ainda escolho você. E eu vou continuar escolhendo, todo dia, do jeito mais bonito que eu souber.</div>
+        </div>
+      </div>
+
+      <div class="tip">💡 Dica: você pode editar esses textos com momentos reais de vocês pra ficar ainda mais emocionante.</div>
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.style.opacity = "1";
+
+      const items = [...document.querySelectorAll(".item")];
+      const reveal = () => {
+        const h = window.innerHeight;
+        items.forEach(el => {
+          const top = el.getBoundingClientRect().top;
+          if (top < h - 110) el.classList.add("visible");
+        });
+      };
+
+      window.addEventListener("scroll", reveal);
+      reveal();
+    });
+  </script>
+
+  <script src="../assets/js/hearts.js"></script>
+</body>
+</html>
