@@ -1,181 +1,268 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nosso Cantinho 💖</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Para Minha Namorada ❤️</title>
 
-  <!-- Fonte elegante -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #fff;
+}
 
-    body {
-      height: 100vh;
-      background: linear-gradient(-45deg, #fff0f6, #f8bbd0, #e91e63, #ff4d6d);
-      background-size: 300% 300%;
-      animation: gradientMove 12s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+.tempo-amor { margin: 30px auto; }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.unidades {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-    /* Modal */
-    .modal {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px);
-      padding: 45px;
-      border-radius: 30px;
-      box-shadow: 0 20px 50px rgba(233, 30, 99, 0.4);
-      text-align: center;
-      width: 340px;
-      color: white;
-      animation: fadeIn 1.2s ease forwards;
-      z-index: 10;
-    }
+.unidade {
+  background: rgba(0,0,0,0.7);
+  padding: 15px 20px;
+  border-radius: 10px;
+  min-width: 80px;
+}
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+.unidade span {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
 
-    .modal h2 {
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+.unidade label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-top: 5px;
+  display: block;
+}
 
-    .modal p {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 20px;
-    }
+p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.6;
+}
 
-    .modal input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 20px;
-      border: none;
-      margin-top: 10px;
-      font-weight: 600;
-      outline: none;
-      text-align: center;
-      letter-spacing: 2px;
-    }
+button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: #fff;
+  color: #e91e63;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
 
-    .modal button {
-      margin-top: 20px;
-      padding: 12px 35px;
-      font-size: 1rem;
-      background: linear-gradient(135deg, #ff4d6d, #e91e63);
-      border: none;
-      border-radius: 30px;
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.5);
-    }
+button:hover { background: #ffe6ec; }
 
-    .modal button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(233, 30, 99, 0.7);
-    }
+#surpresa {
+  display: none;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease forwards;
+}
 
-    .error {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #ffe6e6;
-      display: none;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    /* Corações flutuando */
-    .heart {
-      position: absolute;
-      font-size: 20px;
-      animation: floatUp linear infinite;
-      opacity: 0.3;
-    }
+.slideshow-container {
+  width: 320px;
+  height: 450px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 25px;
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(100vh);
-      }
-      to {
-        transform: translateY(-10vh);
-      }
-    }
-  </style>
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heart {
+  position: fixed;
+  top: -30px;
+  width: 20px;
+  height: 20px;
+  background: #e91e63;
+  transform: rotate(45deg);
+  animation: fall linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #e91e63;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(45deg); }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="modal">
-    <h2>Nosso Cantinho Secreto 💕</h2>
-    <p>Digite a data que mudou nossas vidas</p>
+<h1>Para Minha Namorada ❤️</h1>
 
-    <input type="password" id="senhaInput" placeholder="••••">
-    <button onclick="verificarSenha()">Entrar</button>
-    <div class="error" id="erroMsg">Senha incorreta 💔</div>
+<div class="tempo-amor">
+  <h2>Eu te amo há:</h2>
+  <div class="unidades">
+
+    <div class="unidade">
+      <span id="anos">0</span>
+      <label>Anos</label>
+    </div>
+
+    <div class="unidade">
+      <span id="meses">0</span>
+      <label>Meses</label>
+    </div>
+
+    <div class="unidade">
+      <span id="dias">0</span>
+      <label>Dias</label>
+    </div>
+
+    <div class="unidade">
+      <span id="horas">0</span>
+      <label>Horas</label>
+    </div>
+
+    <div class="unidade">
+      <span id="minutos">0</span>
+      <label>Minutos</label>
+    </div>
+
+    <div class="unidade">
+      <span id="segundos">0</span>
+      <label>Segundos</label>
+    </div>
+
   </div>
+</div>
 
-  <script>
-    const senhaCorreta = atob("MDcwNA=="); // 0704
+<h2>Nossa história ainda está começando, mas cada dia é especial 💖</h2>
 
-    function verificarSenha() {
-      const senhaDigitada = document.getElementById("senhaInput").value;
-      const erro = document.getElementById("erroMsg");
+<audio id="musica" loop>
+  <source src="assets/audio/Djavan-Um=Amor-Puro-(Áudio-Oficial).mp3" type="audio/mpeg">
+</audio>
 
-      if (senhaDigitada === senhaCorreta) {
-        window.location.href = "amor.html";
-      } else {
-        erro.style.display = "block";
-        document.getElementById("senhaInput").value = "";
-      }
-    }
+<div class="slideshow-container">
+  <div class="slide"><img src="assets/images/foto.jpg"></div>
+  <div class="slide"><img src="assets/images/foto2.jpg"></div>
+  <div class="slide"><img src="assets/images/foto3.jpg"></div>
+  <div class="slide"><img src="assets/images/foto_4.jpg.jpeg"></div>
+  <div class="slide"><img src="assets/images/foto_8.jpg.jpeg"></div>
+  <div class="slide"><img src="assets/images/foto_12.jpg.jpeg"></div>
+</div>
 
-    // Permitir Enter
-    document.getElementById("senhaInput").addEventListener("keypress", function(e) {
-      if (e.key === "Enter") {
-        verificarSenha();
-      }
-    });
+<button onclick="mostrarSurpresa()">Clique aqui ❤️</button>
 
-    // Criar corações animados
-    function criarCoracao() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      document.body.appendChild(heart);
+<div id="surpresa">
+  Eu te amo mil milhões ❤️💖
+</div>
 
-      setTimeout(() => {
-        heart.remove();
-      }, 10000);
-    }
+<script>
 
-    setInterval(criarCoracao, 800);
-  </script>
+function atualizarContador() {
+  const inicio = new Date(2025, 3, 7, 0, 0, 0);
+  const agora = new Date();
+
+  if (agora < inicio) return;
+
+  let anos = agora.getFullYear() - inicio.getFullYear();
+  let meses = agora.getMonth() - inicio.getMonth();
+  let dias = agora.getDate() - inicio.getDate();
+
+  if (dias < 0) {
+    meses--;
+    const ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+    dias += ultimoMes.getDate();
+  }
+
+  if (meses < 0) {
+    anos--;
+    meses += 12;
+  }
+
+  const diffMs = agora - inicio;
+  const horas = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
+  const minutos = Math.floor(diffMs / (1000 * 60)) % 60;
+  const segundos = Math.floor(diffMs / 1000) % 60;
+
+  document.getElementById("anos").innerText = anos;
+  document.getElementById("meses").innerText = meses;
+  document.getElementById("dias").innerText = dias;
+  document.getElementById("horas").innerText = horas;
+  document.getElementById("minutos").innerText = minutos;
+  document.getElementById("segundos").innerText = segundos;
+}
+
+function mostrarSurpresa() {
+  document.getElementById("surpresa").style.display = "block";
+  const audio = document.getElementById("musica");
+  audio.play();
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
+let slideIndex = 0;
+
+function showSlides() {
+  const slides = document.getElementsByClassName("slide");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) slideIndex = 1;
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 3000);
+}
+
+showSlides();
+
+</script>
 
 </body>
 </html>
