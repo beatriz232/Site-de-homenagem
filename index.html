@@ -1,77 +1,267 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nosso Cantinho Secreto 💕</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Para Minha Namorada ❤️</title>
 
 <style>
-body{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#ff4d6d,#e91e63);
-  font-family:Arial, sans-serif;
-  color:white;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
 }
 
-.login-box{
-  background:rgba(255,255,255,0.15);
-  padding:40px;
-  border-radius:20px;
-  text-align:center;
-  backdrop-filter:blur(10px);
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #fff;
 }
 
-input{
-  padding:12px;
-  border:none;
-  border-radius:20px;
-  margin-top:15px;
-  text-align:center;
+.tempo-amor { margin: 30px auto; }
+
+.unidades {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-button{
-  margin-top:20px;
-  padding:10px 25px;
-  border:none;
-  border-radius:20px;
-  background:white;
-  color:#e91e63;
-  cursor:pointer;
-  font-weight:bold;
+.unidade {
+  background: rgba(0,0,0,0.7);
+  padding: 15px 20px;
+  border-radius: 10px;
+  min-width: 80px;
 }
 
-.erro{
-  margin-top:10px;
-  display:none;
-  color:#ffe6e6;
+.unidade span {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.unidade label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-top: 5px;
+  display: block;
+}
+
+p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: #fff;
+  color: #e91e63;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover { background: #ffe6ec; }
+
+#surpresa {
+  display: none;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slideshow-container {
+  width: 320px;
+  height: 450px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heart {
+  position: fixed;
+  top: -30px;
+  width: 20px;
+  height: 20px;
+  background: #e91e63;
+  transform: rotate(45deg);
+  animation: fall linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #e91e63;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(45deg); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="login-box">
-  <h2>Digite a data que mudou nossas vidas 💖</h2>
-  <input type="password" id="senha" placeholder="••••">
-  <br>
-  <button onclick="verificar()">Entrar</button>
-  <div class="erro" id="erro">Senha incorreta 💔</div>
+<h1>Para Minha Namorada ❤️</h1>
+
+<div class="tempo-amor">
+  <h2>Eu te amo há:</h2>
+  <div class="unidades">
+
+    <div class="unidade">
+      <span id="anos">0</span>
+      <label>Anos</label>
+    </div>
+
+    <div class="unidade">
+      <span id="meses">0</span>
+      <label>Meses</label>
+    </div>
+
+    <div class="unidade">
+      <span id="dias">0</span>
+      <label>Dias</label>
+    </div>
+
+    <div class="unidade">
+      <span id="horas">0</span>
+      <label>Horas</label>
+    </div>
+
+    <div class="unidade">
+      <span id="minutos">0</span>
+      <label>Minutos</label>
+    </div>
+
+    <div class="unidade">
+      <span id="segundos">0</span>
+      <label>Segundos</label>
+    </div>
+
+  </div>
+</div>
+
+<h2>Nossa história ainda está começando, mas cada dia é especial 💖</h2>
+
+<audio id="musica" loop>
+  <source src="assets/audio/Djavan-Um=Amor-Puro-(Áudio-Oficial).mp3" type="audio/mpeg">
+</audio>
+
+<div class="slideshow-container">
+  <div class="slide"><img src="assets/images/foto.jpg"></div>
+  <div class="slide"><img src="assets/images/foto2.jpg"></div>
+  <div class="slide"><img src="assets/images/foto3.jpg"></div>
+  <div class="slide"><img src="assets/images/foto_4.jpg.jpeg"></div>
+  <div class="slide"><img src="assets/images/foto_8.jpg.jpeg"></div>
+  <div class="slide"><img src="assets/images/foto_12.jpg.jpeg"></div>
+</div>
+
+<button onclick="mostrarSurpresa()">Clique aqui ❤️</button>
+
+<div id="surpresa">
+  Meu amor, Você tem ideia do quanto mudou minha vida desde que chegou? É como se tudo tivesse feito sentido de repente. Seu riso virou meu som favorito, seu abraço, meu lugar preferido. Seu jeitinho de falar comigo, de cuidar de mim, de me olhar... virou tudo o que eu preciso pra estar bem. Tem dias que eu paro e penso: “Caramba... será mesmo que tudo isso é real?" Porque meu amor, isso é tão novo pra mim, nunca ninguém me amou da forma que você me ama, que você cuida de mim. O que eu sinto por você amor, é um amor tão sincero, tão intenso e verdadeiro, nunca amor, vou fazer você ficar com dúvidas do que sinto por você. Não existe palavras suficientes para descrever o quanto eu amo você, por isso que tudo se resume na frase: EU TE AMO. Agora a minha vida tem uma nova história, um novo capítulo que é ao seu lado e meu amor, pode ter certeza que a nossa história tem começo, meio e nunca terá um fim. A cada dia que passa, eu vou te amando cada vez mais e é com você, ao seu lado que eu quero passar o resto da minha vida<br /> Eu te amo meu amor ❤️ Eu te amo mil milhões ❤️ 💖
 </div>
 
 <script>
-function verificar(){
-  const senha = document.getElementById("senha").value;
-  const erro = document.getElementById("erro");
 
-  if(senha === "0704"){
-    window.location.href = "amor2.html";
-  } else {
-    erro.style.display = "block";
+function atualizarContador() {
+  const inicio = new Date(2025, 3, 7, 0, 0, 0);
+  const agora = new Date();
+
+  if (agora < inicio) return;
+
+  let anos = agora.getFullYear() - inicio.getFullYear();
+  let meses = agora.getMonth() - inicio.getMonth();
+  let dias = agora.getDate() - inicio.getDate();
+
+  if (dias < 0) {
+    meses--;
+    const ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+    dias += ultimoMes.getDate();
   }
+
+  if (meses < 0) {
+    anos--;
+    meses += 12;
+  }
+
+  const diffMs = agora - inicio;
+  const horas = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
+  const minutos = Math.floor(diffMs / (1000 * 60)) % 60;
+  const segundos = Math.floor(diffMs / 1000) % 60;
+
+  document.getElementById("anos").innerText = anos;
+  document.getElementById("meses").innerText = meses;
+  document.getElementById("dias").innerText = dias;
+  document.getElementById("horas").innerText = horas;
+  document.getElementById("minutos").innerText = minutos;
+  document.getElementById("segundos").innerText = segundos;
 }
+
+function mostrarSurpresa() {
+  document.getElementById("surpresa").style.display = "block";
+  const audio = document.getElementById("musica");
+  audio.play();
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
+let slideIndex = 0;
+
+function showSlides() {
+  const slides = document.getElementsByClassName("slide");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) slideIndex = 1;
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 3000);
+}
+
+showSlides();
+
 </script>
 
 </body>
