@@ -1,192 +1,607 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mapa do Nosso Primeiro Encontro 🗺️💖</title>
 
+  <title>Onde Tudo Começou ❤️</title>
+
+  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
 
   <style>
+    :root {
+      --pink: #ff4d8d;
+      --pink-strong: #ff006a;
+      --dark: #09090f;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(circle at top,
+          rgba(255, 0, 106, 0.18),
+          transparent 30%),
+        linear-gradient(180deg,
+          #14050d,
+          #09090f);
+
+      min-height: 100vh;
+
       opacity: 0;
-      transition: opacity .8s ease;
+      transition: opacity 1s ease;
+    }
+
+    /* GLOW */
+    .glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: #ff006a;
+      filter: blur(140px);
+      opacity: 0.12;
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HEARTS */
+    #heartsCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .page {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      width: min(1100px, 92%);
+      margin: auto;
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      padding-bottom: 100px;
     }
 
-    .topbar {
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
+      justify-content: center;
+
+      text-align: center;
+      position: relative;
     }
 
-    .title {
-      font-size: 28px;
+    .hero-content {
+      max-width: 850px;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      margin-bottom: 25px;
+
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 25px;
       font-weight: 700;
     }
 
+    .hero p {
+      font-size: 1.1rem;
+      opacity: .82;
+      line-height: 2;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* BUTTON */
     .btn-back {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+
+      z-index: 20;
+
       text-decoration: none;
       color: white;
-      padding: 10px 16px;
+
+      padding: 12px 18px;
+
       border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.25);
-      transition: all .2s ease;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      backdrop-filter: blur(15px);
+
+      transition: .3s;
     }
 
     .btn-back:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.24);
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.15);
     }
 
+    /* CARD */
     .card {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 18px 60px rgba(233, 30, 99, 0.25);
-      margin-bottom: 30px;
+      position: relative;
+
+      background: var(--glass);
+
+      border: 1px solid var(--border);
+
+      backdrop-filter: blur(20px);
+
+      border-radius: 35px;
+
+      overflow: hidden;
+
+      padding: 35px;
+
+      box-shadow:
+        0 15px 50px rgba(255, 0, 106, 0.15);
+
+      animation: fadeUp 1s ease;
     }
 
+    .card::before {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(135deg,
+          rgba(255, 255, 255, 0.08),
+          transparent);
+
+      pointer-events: none;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    /* MAP */
     .map {
-      margin-top: 14px;
-      border-radius: 22px;
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+      border-radius: 28px;
+      margin-top: 20px;
       aspect-ratio: 16/9;
     }
 
     .map iframe {
       width: 100%;
       height: 100%;
-      border: 0;
+      border: none;
+      filter: grayscale(.2) contrast(1.1);
     }
 
+    .map::after {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(to top,
+          rgba(0, 0, 0, .45),
+          transparent 40%);
+    }
+
+    /* NOTE */
     .note {
-      margin-top: 16px;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.22);
-      line-height: 1.9;
+      margin-top: 25px;
+
+      padding: 25px;
+
+      border-radius: 25px;
+
+      background: rgba(255, 255, 255, 0.05);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      line-height: 2;
+
+      font-size: 1rem;
+
+      opacity: .9;
     }
 
-    .distance-section {
+    /* DISTANCE */
+    .distance {
+      margin-top: 45px;
       text-align: center;
     }
 
+    .distance h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 30px;
+    }
+
     .distance-card {
-      padding: 30px;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
-      line-height: 1.9;
+      background: rgba(255, 255, 255, 0.08);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      backdrop-filter: blur(18px);
+
+      border-radius: 35px;
+
+      padding: 40px;
+
+      line-height: 2;
+
+      box-shadow:
+        0 15px 40px rgba(255, 0, 106, .12);
     }
 
     .highlight {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 18px 0;
-      background: linear-gradient(135deg, #ff4d6d, #e91e63);
+      margin: 30px 0;
+
+      font-size: clamp(1.4rem, 4vw, 2rem);
+
+      font-weight: 700;
+
+      background:
+        linear-gradient(135deg,
+          #ff4d8d,
+          #ff006a);
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+    /* MUSIC */
+    .music-player {
+      position: fixed;
+
+      bottom: 25px;
+      right: 25px;
+
+      z-index: 30;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding: 14px 18px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      backdrop-filter: blur(15px);
+    }
+
+    .music-player button {
+      border: none;
+      background: linear-gradient(135deg,
+          var(--pink),
+          var(--pink-strong));
+
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      color: white;
+      cursor: pointer;
+
+      font-size: 16px;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+
+      .hero {
+        min-height: 70vh;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: .98rem;
+      }
+
+      .card,
+      .distance-card {
+        padding: 25px;
+      }
+
+      .btn-back {
+        left: 15px;
+        top: 15px;
+      }
+
+      .music-player span {
+        display: none;
+      }
+
+    }
   </style>
 </head>
 
 <body>
 
-  <a href="../amor.html" style="
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 16px;
-    background: #e91e63;
-    color: white;
-    border-radius: 20px;
-    text-decoration: none;">
-    ⬅ Voltar
+  <!-- GLOW -->
+  <div class="glow"></div>
 
+  <!-- HEARTS -->
+  <canvas id="heartsCanvas"></canvas>
+
+  <!-- BACK -->
+  <a href="../index.html" class="btn-back">
+    ⬅ Voltar
   </a>
 
-  <h1>Mapa do Nosso Primeiro Encontro 🗺️💖</h1>
-  <canvas id="heartsCanvas"></canvas>
+  <!-- MUSIC -->
+  <div class="music-player">
+
+    <button id="musicBtn">
+      🎵
+    </button>
+
+    <span>
+      Nossa música
+    </span>
+
+  </div>
+
+  <audio id="music" loop>
+    <source src="../assets/audio/Djavan - Um Amor Puro (Áudio Oficial).mp3" type="audio/mp3">
+  </audio>
 
   <main class="page">
 
-    <div class="topbar">
-      <div>
-        <div class="title">Mapa do Nosso Primeiro Encontro 🗺️💖</div>
-        <div style="opacity:.9">O lugar que marcou o começo da nossa história ✨</div>
-      </div>
-      <a href="../index.html" class="btn-back">⬅ Voltar</a>
-    </div>
+    <!-- HERO -->
+    <section class="hero">
 
-    <!-- MAPA -->
+      <div class="hero-content">
+
+        <div class="tag">
+          ❤️ Capítulo 1
+        </div>
+
+        <h1>
+          Onde o destino
+          cruzou nossos caminhos
+        </h1>
+
+        <p>
+          Talvez fosse apenas um lugar comum para o mundo.
+          Mas foi exatamente ali que a minha vida começou
+          a mudar completamente. ✨
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- MAP -->
     <section class="card">
-      <strong>📍 Terminal de Integração do Antônio Bezerra</strong>
+
+      <div class="card-title">
+        📍 Terminal de Integração do Antônio Bezerra
+      </div>
 
       <div class="map">
-        <iframe
-          loading="lazy"
+
+        <iframe loading="lazy"
           src="https://www.google.com/maps?q=Terminal+de+Integra%C3%A7%C3%A3o+do+Ant%C3%B4nio+Bezerra&output=embed">
         </iframe>
+
       </div>
 
       <div class="note">
+
         Foi aqui que nossos olhares se cruzaram pela primeira vez.
-        Um lugar peculiar para o primerio encontro,
-        mas eterno na nossa história. 💞
+
+        <br><br>
+
+        E desde aquele instante,
+        mesmo sem perceber,
+        meu coração já estava escolhendo você. ❤️
+
       </div>
+
     </section>
 
-    <!-- DISTÂNCIA -->
-    <section class="distance-section">
-      <h2>Apenas 3,6 km de distância…</h2>
+    <!-- DISTANCE -->
+    <section class="distance">
+
+      <h2>
+        Apenas 3,6 km…
+      </h2>
 
       <div class="distance-card">
+
         <p>
-          Hoje moramos a <strong>3,6 km</strong> uma da outra.
-          Um pequeno trajeto no mapa.
+          Tão pouco no mapa…
+          e ainda assim,
+          foi o suficiente para o destino encontrar você.
         </p>
 
-        <p class="highlight">
-          Mas logo logo não serão quilômetros —
-          será o mesmo metro². 💖
-        </p>
+        <div class="highlight">
+          Logo logo não serão quilômetros.
+          Será o mesmo lar. 💖
+        </div>
 
         <p>
           Porque a distância nunca foi sobre espaço.
           Sempre foi sobre tempo.
           E o nosso tempo está chegando. ✨
         </p>
+
       </div>
+
     </section>
 
   </main>
 
+  <!-- MUSIC -->
   <script>
-    window.addEventListener("load", () => {
-      document.body.style.opacity = "1";
+    const music =
+      document.getElementById('music');
+
+    const btn =
+      document.getElementById('musicBtn');
+
+    let playing = false;
+
+    btn.onclick = () => {
+
+      if (!playing) {
+        music.play();
+        btn.innerHTML = '⏸️';
+      } else {
+        music.pause();
+        btn.innerHTML = '🎵';
+      }
+
+      playing = !playing;
+    };
+  </script>
+
+  <!-- FADE -->
+  <script>
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
     });
   </script>
 
-  <script src="../assets/js/hearts.js"></script>
+  <!-- HEARTS -->
+  <script>
+    const canvas =
+      document.getElementById('heartsCanvas');
+
+    const ctx =
+      canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const hearts = [];
+
+    for (let i = 0; i < 40; i++) {
+
+      hearts.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 20 + 10,
+        speed: Math.random() * 1 + .3,
+        opacity: Math.random()
+      });
+
+    }
+
+    function animate() {
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      hearts.forEach(h => {
+
+        ctx.globalAlpha = h.opacity;
+
+        ctx.font =
+          `${h.size}px Arial`;
+
+        ctx.fillText(
+          '❤',
+          h.x,
+          h.y
+        );
+
+        h.y -= h.speed;
+
+        if (h.y < -20) {
+          h.y =
+            canvas.height + 20;
+        }
+
+      });
+
+      requestAnimationFrame(
+        animate
+      );
+    }
+
+    animate();
+
+    window.addEventListener(
+      'resize',
+      () => {
+        canvas.width =
+          window.innerWidth;
+
+        canvas.height =
+          window.innerHeight;
+      }
+    );
+  </script>
 
 </body>
+
 </html>

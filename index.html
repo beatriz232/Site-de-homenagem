@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Para Minha Namorada ❤️</title>
 
+
 <style>
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -87,11 +88,36 @@ button {
   margin-top:15px;
   border-radius:20px;
 }
+
+/* =========================
+   CHUVA DE CORAÇÕES
+========================= */
+
+#heartsCanvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* IMPORTANTE */
+body{
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* TODO CONTEÚDO ACIMA DOS CORAÇÕES */
+body > *:not(#heartsCanvas){
+  position:relative;
+  z-index:1;
+}
 </style>
 </head>
 
 <body>
-
+<canvas id="heartsCanvas"></canvas>
 <h1>Para Minha Namorada ❤️</h1>
 
 <h2>Eu te amo há:</h2>
@@ -118,7 +144,33 @@ button {
 <button onclick="mostrarSurpresa()">Clique aqui ❤️</button>
 
 <div id="surpresa">
-  Meu amor, Você tem ideia do quanto mudou minha vida desde que chegou? É como se tudo tivesse feito sentido de repente. Seu riso virou meu som favorito, seu abraço, meu lugar preferido. Seu jeitinho de falar comigo, de cuidar de mim, de me olhar... virou tudo o que eu preciso pra estar bem. Tem dias que eu paro e penso: “Caramba... será mesmo que tudo isso é real?" Porque meu amor, isso é tão novo pra mim, nunca ninguém me amou da forma que você me ama, que você cuida de mim. O que eu sinto por você amor, é um amor tão sincero, tão intenso e verdadeiro, nunca amor, vou fazer você ficar com dúvidas do que sinto por você. Não existe palavras suficientes para descrever o quanto eu amo você, por isso que tudo se resume na frase: EU TE AMO. Agora a minha vida tem uma nova história, um novo capítulo que é ao seu lado e meu amor, pode ter certeza que a nossa história tem começo, meio e nunca terá um fim. A cada dia que passa, eu vou te amando cada vez mais e é com você, ao seu lado que eu quero passar o resto da minha vida<br /> Eu te amo meu amor ❤️ Eu te amo mil milhões ❤️ 💖
+  <h2>Meu amor… ❤️</h2>
+
+  <h2>Você tem noção do quanto a minha vida mudou depois que você chegou?
+      Porque sinceramente… parece que antes de você tudo era meio sem cor, meio vazio. E aí você apareceu, com esse seu jeitinho, com esse sorriso lindo, com esse cuidado que ninguém nunca teve comigo… e tudo começou a fazer sentido.</h2>
+
+  <h2>Seu abraço virou meu lugar favorito no mundo.
+  Sua voz virou calma pros meus dias difíceis.
+  Seu carinho virou a coisa que eu mais preciso pra ficar bem.</h2>
+
+  <h2>Às vezes eu paro e penso: “Como alguém consegue me amar desse jeito?”
+  Porque isso tudo ainda parece surreal pra mim. Nunca ninguém me cuidou, me acolheu e me amou da forma que você ama. E eu queria que você soubesse que cada detalhe seu mora no meu coração.</h2>
+
+  <h2>O que eu sinto por você é sincero, intenso e verdadeiro.
+  E eu prometo, meu amor, que nunca vou deixar você duvidar do quanto eu amo você. Nunca.</h2>
+
+  <h2>Talvez eu nunca encontre palavras suficientes pra explicar tudo o que você significa pra mim… mas no final tudo sempre se resume na frase mais verdadeira da minha vida:
+
+  EU TE AMO. ❤️</h2>
+
+  <h2>Hoje minha vida tem um novo sentido, um novo capítulo, uma nova razão pra sorrir… e tudo isso é você.
+  É ao seu lado que eu quero viver meus melhores momentos, realizar sonhos, construir memórias e passar o resto da minha vida.</h2>
+
+  <h2>E se depender de mim, nossa história nunca vai ter fim.
+  Porque a cada dia que passa eu me apaixono ainda mais por você.</h2>
+
+  <h2>Eu te amo infinitamente, meu amor. ❤️</h2>
+  <h2>Eu te amo mil milhões e mais um infinito inteiro só nosso. 💖✨💖</h2>
 </div>
 
 <!-- SIGNO -->
@@ -149,7 +201,7 @@ button {
   <a href="pages/mapa.html">🗺️ Nosso Primeiro Encontro</a>
   <a href="pages/timeline.html">📖 Linha do Tempo</a>
   <a href="pages/quiz.html">💞 Quiz do Amor</a>
-  <a href="pages/memoria.html">📸 Memórias</a>
+  <a href="pages/pra voce.html">📸 Pra Você</a>
 </div>
 
 <script>
@@ -203,6 +255,179 @@ function showSlides(){
   setTimeout(showSlides,3000);
 }
 showSlides();
+
+/* CHUVA DE CORAÇÕES */
+
+/* =========================
+   CHUVA DE CORAÇÕES
+========================= */
+
+const canvas =
+  document.getElementById("heartsCanvas");
+
+const ctx =
+  canvas.getContext("2d");
+
+let hearts = [];
+
+function resizeCanvas(){
+
+  canvas.width =
+    window.innerWidth;
+
+  canvas.height =
+    window.innerHeight;
+
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+function createHeart(){
+
+  hearts.push({
+
+    x:
+      Math.random() * canvas.width,
+
+    y:-20,
+
+    size:
+      Math.random()  * 10 + 5,
+
+    speed:
+      Math.random() * 2 + 1,
+
+    swing:
+      Math.random() * 2,
+
+    opacity:
+      Math.random() * 0.5 + 0.3
+
+  });
+
+}
+
+function drawHeart(
+  x,
+  y,
+  size,
+  opacity
+){
+
+  ctx.save();
+
+  ctx.translate(x,y);
+
+  ctx.scale(
+    size / 20,
+    size / 20
+  );
+
+  ctx.beginPath();
+
+  ctx.moveTo(0,0);
+
+  ctx.bezierCurveTo(
+    0,-3,
+    -5,-15,
+    -25,-15
+  );
+
+  ctx.bezierCurveTo(
+    -55,-15,
+    -55,22,
+    -55,22
+  );
+
+  ctx.bezierCurveTo(
+    -55,40,
+    -35,62,
+    0,80
+  );
+
+  ctx.bezierCurveTo(
+    35,62,
+    55,40,
+    55,22
+  );
+
+  ctx.bezierCurveTo(
+    55,22,
+    55,-15,
+    25,-15
+  );
+
+  ctx.bezierCurveTo(
+    10,-15,
+    0,-3,
+    0,0
+  );
+
+  ctx.closePath();
+
+  ctx.fillStyle =
+    `rgba(255,92,138,${opacity})`;
+
+  ctx.shadowColor =
+    "rgba(255,92,138,.8)";
+
+  ctx.shadowBlur = 15;
+
+  ctx.fill();
+
+  ctx.restore();
+
+}
+
+function animateHearts(){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  if(Math.random() < 0.35){
+    createHeart();
+  }
+
+  hearts.forEach((heart,index) => {
+
+    heart.y += heart.speed;
+
+    heart.x +=
+      Math.sin(heart.y * 0.01)
+      * heart.swing;
+
+    drawHeart(
+      heart.x,
+      heart.y,
+      heart.size,
+      heart.opacity
+    );
+
+    if(
+      heart.y >
+      canvas.height + 100
+    ){
+      hearts.splice(index,1);
+    }
+
+  });
+
+  requestAnimationFrame(
+    animateHearts
+  );
+
+}
+
+animateHearts();
 </script>
 
 </body>
